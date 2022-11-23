@@ -18,37 +18,37 @@
         </div>
     </div>
 
-<a href="{{ route('nueva_actividad',$project->id) }}" style="padding-left:42%"><button type="button" class="btn btn-dark">Agregar nueva actividad</button></a><br><br>
-
-@forelse ($project->actividades as $actividad)
+@forelse ($actividades as $actividad)
+@if($actividad->idusuario == Auth::user()->id)
 <div class="row" style="padding-left:30%">
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
+        @foreach($proyectos as $proyecto)
+        @if($proyecto->id==$actividad->proyecto_id)
+        <h4 class="card-title"><b>{{$proyecto['nombre']}}</b></h4>
+        @endif
+        @endforeach
+
         <h5 class="card-title"><b>{{$actividad['titulo']}}</b></h5>
         <p class="card-text">{{$actividad['descripcion']}}</p>
         <p class="card-text"><b>Fecha de inicio:</b> {{$actividad['fecha_inicio']}}</p>
-        <p class="card-text"><b>Fecha de entrega estimada:</b> {{$actividad['fecha_fin']}}</p>
+        <p class="card-text"><b>Fecha de entrega:</b> {{$actividad['fecha_fin']}}</p>
         <p class="card-text"><b>Tiempo estimado:</b> {{$actividad['tiempo_estimado']}}</p>
         <p class="card-text"><b>Prioridad:</b> {{$actividad['prioridad']}}</p>
         <p class="card-text"><b>Estatus:</b> {{$actividad['estatus']}}</p>
-        @foreach($users as $user)
-            @if($user['id']==$actividad['idusuario'])
-            <p class="card-text"><b>Encargado: {{$user['name']}}</b> </p>
-            @endif
-        @endforeach
-        
-        <a href="{{ route('editar_actividad',$actividad->id) }}" class="btn btn-primary">Editar actividad</a> <a href="{{ route('eliminar_actividad',$actividad->id) }}" class="btn btn-danger">Eliminar actividad</a>
+        <a href="{{ route('editar_actividad_usuario',$actividad->id) }}" class="btn btn-primary">Editar</a>
       </div>
     </div>
   </div>
 </div>
 <br>
+@endif
 
 @empty
 
 <p>
-    No hay actividades todavia, agrega una :)
+    No hay actividades todavia, relajate un poco :)
 </p>
 
 

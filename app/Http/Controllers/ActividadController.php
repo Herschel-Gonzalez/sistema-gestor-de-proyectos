@@ -68,13 +68,27 @@ class ActividadController extends Controller
         $actividad->estatus = $request->estatus;
         $actividad->proyecto_id = $request->proyecto_id;
         $actividad->save();
-        return redirect('projects');
+        return redirect('dashboard');
     }
 
     public function delete($idactividad){
         $actividad = Actividad::find($idactividad);
         $actividad->delete();
        return redirect('projects');
+    }
+
+    public function actividades_usuario(){
+        $actividades = Actividad::latest()->paginate();
+        $proyectos = Proyecto::latest()->paginate();
+        //dd($proyectos);
+
+        return view('actividades_usuario',['actividades' => $actividades],['proyectos' => $proyectos]);
+
+    }
+
+    public function editar_actividad_usuario($idactividad){
+        $actividad = Actividad::find($idactividad);
+        return view('editar_actividad_usuario',['actividad' => $actividad]);
     }
 
 }

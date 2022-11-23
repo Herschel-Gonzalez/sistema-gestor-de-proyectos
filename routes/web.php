@@ -49,6 +49,8 @@ Route::controller(ActividadController::class)->group(function(){
     Route::get('projects/editar-actividad{actividad_id}','editar_actividad')->name('editar_actividad'); 
     Route::post('update-actividad','update')->name('update-actividad');
     Route::get('projects/eliminar{actividad_id}', 'delete')->name('eliminar_actividad');
+    Route::get('/actividades-usuario','actividades_usuario')->name('actividades_usuario'); 
+    Route::get('/editar_actividad_usuario{idactividad}','editar_actividad_usuario')->name('editar_actividad_usuario');
     //Route::get('/users/{user_id}', 'edit')->name('edit');
     
 });
