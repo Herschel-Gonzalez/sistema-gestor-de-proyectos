@@ -19,46 +19,24 @@
         </div>
     </div>
 
+@include ('filtro')
+
 <a href="{{ route('create') }}"><button type="button" class="btn btn-dark">Agregar nuevo usuario</button></a>
 <br>
 <br>
 
-<table class="table">
-  <thead class="table-dark">
-    <tr>
-        <td>Nombre</td>
-        <td>Paterno</td>
-        <td>Materno</td>
-        <td>Correo</td>
-        <td>Contraseña</td>
-        <td>Fecha de creación</td>
-        <td>Fecha de actualización</td>
-        <td>Perfil</td>
-        <td>Acciones</td>
-    </tr>    
-  </thead>
-  <tbody>
-  
-  @foreach ($users as $user)
 
-  <tr>
-    <td>{{$user['name']}}</td>
-    <td>{{$user['paterno']}}</td>
-    <td>{{$user['materno']}}</td>
-    <td>{{$user['email']}}</td>
-    <td>{{$user['password']}}</td>
-    <td>{{$user['created_at']}}</td>
-    <td>{{$user['updated_at']}}</td>
-    <td>{{$user['tipo']}}</td>
-    <td><a href="{{ route('edit', $user->id) }}" class="btn btn-primary">Editar</a> <a href="{{ route('delete', $user->id) }}" class="btn btn-danger">Eliminar</a></td>
-  </tr>
+<div id="contenido-tabla">
+@include('contenido',['users'=>$users])
+</div>
 
-  @endforeach
-    
-  </tbody>
-</table>
 
-    
+
+<script type="text/javascript" src="{{asset('js/controlador.js')}}"></script>
+
+Spatie\LaravelIgnition\Exceptions\ViewException: Undefined variable $projects in file /Users/herschelgonzalez/Documents/GitHub/sistema-gestor-de-proyectos/resources/views/listaProyectos.blade.php on line 1
+
 
 
 </x-app-layout>
+

@@ -56,5 +56,11 @@ class ProjectController extends Controller
         return redirect('projects');
     }
 
+    public function filtroProyecto(Request $request){
+        $data = $request->all();
+        $projects = Proyecto::where('nombre','like','%'.$data['nombre'].'%')->get();
+        //dd($users);
+        return view('listaProyectos',compact('projects'));
+    }
 
 }

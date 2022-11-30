@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Proyecto;
 use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Validation\Rules;
@@ -70,5 +71,15 @@ class UserController extends Controller
         $user->delete();
        return redirect('users');
     }
+
+    public function filtro(Request $request){
+       // return view('contenido');
+        $data = $request->all();
+        $users = User::where('name','like','%'.$data['nombre'].'%')->get();
+        //dd($users);
+        return view('contenido',compact('users'));
+    }
+
+   
     
 }

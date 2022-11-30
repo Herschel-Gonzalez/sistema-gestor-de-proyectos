@@ -28,9 +28,12 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/users/{user_id}', 'edit')->name('edit');
     Route::post('users/update','update')->name('update');
     Route::get('/users/delete/{user_id}', 'delete')->name('delete');
+    Route::post('/users/filtro','filtro')->name('filtro');
     //Route::get('/users/{user_id}', 'edit')->name('edit');
     
 });
+
+//Route::POST('/users/filtro',[UserController::class,'filtro']);
 
 Route::controller(ProjectController::class)->group(function(){
     Route::get('projects','projects')->name('projects');
@@ -38,6 +41,7 @@ Route::controller(ProjectController::class)->group(function(){
     Route::post('registrar-proyecto','store')->name('registrar-proyecto');
     Route::get('edit_project{project_id}','edit')->name('edit_project');
     Route::post('update-project','update')->name('update-project');
+    Route::post('/projects/filtro-proyecto','filtroProyecto')->name('filtroProyecto');
     //Route::get('/users/{user_id}', 'edit')->name('edit');
     
 });
