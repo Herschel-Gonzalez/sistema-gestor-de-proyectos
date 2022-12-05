@@ -37,6 +37,12 @@
             <p class="card-text"><b>Encargado: {{$user['name']}}</b> </p>
             @endif
         @endforeach
+
+        <p class="card-text"><b>Evidencia: </b> </p>
+        @foreach ($actividad->media as $image)
+        <img src="{{$image->getUrl()}}" alt="Evidencia" width="450" height="450"><br>
+                
+        @endforeach
         
         <a href="{{ route('editar_actividad',$actividad->id) }}" class="btn btn-primary">Editar actividad</a> <a href="{{ route('eliminar_actividad',$actividad->id) }}" class="btn btn-danger">Eliminar actividad</a>
       </div>

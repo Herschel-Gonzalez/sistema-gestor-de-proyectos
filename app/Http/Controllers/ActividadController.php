@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Proyecto;
 use App\Models\Actividad;
 use App\Models\User;
+use Carbon\Carbon;
+
 
 class ActividadController extends Controller
 {
@@ -57,15 +59,33 @@ class ActividadController extends Controller
     }
 
     public function update(Request $request){
+        //$actividad= Actividad::find($request->id)->with('media')->get();
         $actividad= Actividad::find($request->id);
         $actividad->idusuario = $request->idusuario;
         $actividad->titulo = $request->titulo;
         $actividad->descripcion = $request->descripcion;
         $actividad->fecha_inicio = $request->fecha_inicio;
-        $actividad->fecha_fin = $request->fecha_fin;
+        
+        //guardamos la actividad con imagen si se selecciona imagen
+        if($request->hasFile('evidencia')){
+            $actividad->clearMediaCollection('evidencias');
+            $actividad->addMultipleMediaFromRequest(['evidencia'])
+            ->each(function ($fileAdder) {
+                $fileAdder->toMediaCollection('evidencias');
+            });
+        }
+
+        //guardamos la fecha de fin cuando se complete la actividad
+        if ($request->estatus=="Completada") {
+            $actividad->fecha_fin = Carbon::now();
+        }else{
+            $actividad->fecha_fin = $request->fecha_fin;
+        }
+
         $actividad->tiempo_estimado = $request->tiempo_estimado;
         $actividad->prioridad = $request->prioridad;
         $actividad->estatus = $request->estatus;
+
         $actividad->proyecto_id = $request->proyecto_id;
         $actividad->save();
         return redirect('dashboard');

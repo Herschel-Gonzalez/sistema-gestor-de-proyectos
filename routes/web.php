@@ -18,7 +18,7 @@ use App\Http\Controllers\ActividadController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::controller(UserController::class)->group(function(){
