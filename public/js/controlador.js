@@ -38,3 +38,23 @@ function buscarProyecto() {
     }
     request.send(formData);
 }
+
+function cargarImagenes() {
+    var request = new XMLHttpRequest();
+    var formData = new FormData(document.querySelector('#form-imagenes'));
+    //console.log(document.querySelector('#form-filtro'));
+    request.open("POST", '/editar_actividad/evidencias',true);
+    //alert('hola');
+    request.onreadystatechange = function(){
+        console.log(this.status);
+        if (this.readyState==4) {
+            if (this.status==200) {
+                if (this.responseText!=null) {
+                    alert("llego");
+                    //document.getElementById('contenido-tarjetas').innerHTML=this.responseText;
+                }else alert("Error de comunicacion: No se recibieron datos")
+            }else alert("Error de comunicacionn "+this.statusText)
+        }
+    }
+    request.send(formData);
+}

@@ -54,14 +54,7 @@
 
             <!-- evidencia -->
             <div>
-                <x-input-label for="evidencia" :value="__('Evidencia')" />
-
-                @foreach ($actividad->media as $image)
-                <img src="{{$image->getUrl()}}" alt="Evidencia"><br>
-                @endforeach
-                <x-text-input id="evidencia" class="block mt-1 w-full" type="file" name="evidencia[]" multiple />
-
-                <x-input-error :messages="$errors->get('evidencia')" class="mt-2" />
+                @include('form-imagenes')
             </div>
 
             <x-text-input class="block mt-1 w-full" type="hidden" name="proyecto_id" :value="$actividad->proyecto_id" />
