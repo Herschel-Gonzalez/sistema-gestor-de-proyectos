@@ -111,4 +111,11 @@ class ActividadController extends Controller
         return view('editar_actividad_usuario',['actividad' => $actividad]);
     }
 
+    public function actividades_externas(){
+        $actividades = Actividad::latest()->paginate();
+        return json_encode($actividades);
+    }
+
+    
+
 }

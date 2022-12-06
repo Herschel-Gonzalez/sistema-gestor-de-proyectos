@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/actividades', 'App\Http\Controllers\ActividadController@actividades_externas');
+Route::get('/proyectos', 'App\Http\Controllers\ProjectController@proyectos_externos');

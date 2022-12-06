@@ -63,4 +63,9 @@ class ProjectController extends Controller
         return view('listaProyectos',compact('projects'));
     }
 
+    public function proyectos_externos(){
+        $projects = Proyecto::latest()->paginate();
+        return json_encode($projects);
+    }
+
 }
