@@ -50,7 +50,26 @@ function cargarImagenes() {
         if (this.readyState==4) {
             if (this.status==200) {
                 if (this.responseText!=null) {
-                    alert("llego");
+                    //alert("llego");
+                    document.getElementById('evidencia').click();
+                    let evidencia = document.getElementById('evidencia');
+
+                    evidencia.addEventListener('change', (event) => {
+                       // console.log(evidencia.files);
+                        let imagenes = "";
+                        let files = evidencia.files;
+                        let pre = document.getElementById("previsualizacion");
+                        for (let i = 0; i < files.length; i++) {
+                            let url = URL.createObjectURL(files[i]);
+                            imagenes+='<img src="' + url + '" alt="Evidencia"><br>';
+                        }
+                        document.getElementById('evAlmacenadas').innerHTML="";
+                        pre.innerHTML=imagenes;
+                        
+                        //document.getElementById('evidencia');
+
+                    });
+
                     //document.getElementById('contenido-tarjetas').innerHTML=this.responseText;
                 }else alert("Error de comunicacion: No se recibieron datos")
             }else alert("Error de comunicacionn "+this.statusText)

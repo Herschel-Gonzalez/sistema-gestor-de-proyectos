@@ -6,6 +6,19 @@
             </a>
         </x-slot>
 
+         <!-- evidencia -->
+         <div>
+                @include('form-imagenes')
+                <div id="previsualizacion"></div>
+                <div id="evAlmacenadas" style="visibility: visible;">
+                    @foreach ($actividad->media as $image)
+                    <img src="{{$image->getUrl()}}" alt="Evidencia"><br>
+                    @endforeach
+                </div>
+                
+        </div>
+
+
         <form method="POST" action="{{ route('update-actividad') }}" enctype="multipart/form-data">
             @csrf
 
@@ -52,12 +65,11 @@
                 
             </select>
 
-            <!-- evidencia -->
-            <div>
-                @include('form-imagenes')
-            </div>
+            
 
-            <x-text-input class="block mt-1 w-full" type="hidden" name="proyecto_id" :value="$actividad->proyecto_id" />
+            <x-text-input id="proyecto_id" class="block mt-1 w-full" type="hidden" name="proyecto_id" :value="$actividad->proyecto_id" />
+
+            <x-text-input id="evidencia" style="display: none;" class="block mt-1 w-full" type="file" name="evidencia[]" multiple />
 
 
             <div class="flex items-center justify-end mt-4">
@@ -70,5 +82,11 @@
                 </x-primary-button>
             </div>
         </form>
+
+       
+
+       
+
     </x-auth-card>
+    <script type="text/javascript" src="{{asset('js/controlador.js')}}"></script>
 </x-guest-layout>

@@ -41,8 +41,9 @@ Route::controller(ProjectController::class)->group(function(){
     Route::post('registrar-proyecto','store')->name('registrar-proyecto');
     Route::get('edit_project{project_id}','edit')->name('edit_project');
     Route::post('update-project','update')->name('update-project');
-    Route::post('/projects/filtro-proyecto','filtroProyecto')->name('filtroProyecto');
+    Route::post('/projects/filtro-proyecto','filtroProyecto')->name('filtroProyecto');  
     Route::get('verProyectos_externos','verProyectos_externos')->name('verProyectos_externos');
+    Route::post('/projects/filtro-proyecto','filtroProyecto')->name('filtroProyecto');
     //Route::get('/users/{user_id}', 'edit')->name('edit');
     
 });
@@ -58,6 +59,7 @@ Route::controller(ActividadController::class)->group(function(){
     Route::get('/editar_actividad_usuario{idactividad}','editar_actividad_usuario')->name('editar_actividad_usuario');
     Route::get('/actividades_externas','verActividadesExternas')->name('verActividadesExternas'); 
     Route::get('/actividades_proyecto_externo{idproyecto}','actividades_proyecto_externo')->name('actividades_proyecto_externo');
+    Route::post('/editar_actividad/evidencias','evidencias')->name('evidencias');
     //Route::get('/users/{user_id}', 'edit')->name('edit');
     
 });

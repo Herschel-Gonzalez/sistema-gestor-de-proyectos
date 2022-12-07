@@ -133,6 +133,10 @@ class ActividadController extends Controller
         return view('verActividadesExternas',['auxactividades' => $auxactividades]);
     }
 
+    public function evidencias(){
+        return view('form-imagenes');
+    }
+
     
 
 }
