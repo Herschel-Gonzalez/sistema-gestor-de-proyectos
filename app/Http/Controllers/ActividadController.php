@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+
 use App\Models\Proyecto;
 use App\Models\Actividad;
 use App\Models\User;
 use Carbon\Carbon;
+
 
 
 class ActividadController extends Controller
@@ -114,6 +117,20 @@ class ActividadController extends Controller
     public function actividades_externas(){
         $actividades = Actividad::latest()->paginate();
         return json_encode($actividades);
+    }
+
+    public function actividades_proyecto_externo($id){
+        $actividades = Http::get('https://pruebas-web.ml/api/actividades')->json();
+
+        $auxactividades = [];
+
+        foreach($actividades as $actividad){
+            if ($actividad['id'] == $id){
+                array_push($auxactividades,$actividad);
+            }
+        }
+        //dd($auxactividades);
+        return view('verActividadesExternas',['auxactividades' => $auxactividades]);
     }
 
     

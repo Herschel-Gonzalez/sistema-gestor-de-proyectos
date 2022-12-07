@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Proyecto;
+use Illuminate\Support\Facades\Http;
+
 
 class ProjectController extends Controller
 {
@@ -66,6 +68,13 @@ class ProjectController extends Controller
     public function proyectos_externos(){
         $projects = Proyecto::latest()->paginate();
         return json_encode($projects);
+    }
+
+    public function verProyectos_externos(){
+        $proyectos = Http::get('https://pruebas-web.ml/api/proyectos')->json();
+
+        //dd($actividades);
+        return view('verProyectos_externos',['proyectos' => $proyectos]);
     }
 
 }

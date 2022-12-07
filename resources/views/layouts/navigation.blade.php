@@ -32,6 +32,14 @@
                         {{ __('Proyectos') }}
                     </x-nav-link>
                 </div>
+
+                <!-- Proyectos externos -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('verProyectos_externos')" >
+                        {{ __('Proyectos externos') }}
+                    </x-nav-link>
+                </div>
+
                 @endif
 
                 @if (Auth::user()->tipo=='Desarrollador')
